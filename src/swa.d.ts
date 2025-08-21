@@ -37,9 +37,7 @@ declare interface SWACLIEnv extends StaticSiteClientEnv {
   SWA_CLI_APP_LOCATION?: string;
   SWA_CLI_OUTPUT_LOCATION?: string;
   SWA_CLI_API_LOCATION?: string;
-  SWA_CLI_DATA_API_LOCATION?: string;
   SWA_CLI_API_PORT?: string;
-  SWA_CLI_DATA_API_PORT?: string;
   SWA_CLI_HOST?: string;
   SWA_CLI_PORT?: string;
   SWA_CLI_APP_SSL?: string;
@@ -50,7 +48,6 @@ declare interface SWACLIEnv extends StaticSiteClientEnv {
   SWA_CLI_OPEN_BROWSER?: string;
   SWA_CLI_APP_DEVSERVER_URL?: string;
   SWA_CLI_API_DEVSERVER_URL?: string;
-  SWA_CLI_DATA_API_DEVSERVER_URL?: string;
 
   // swa deploy
   SWA_CLI_DEPLOY_DRY_RUN?: string;
@@ -81,7 +78,7 @@ declare interface SWACLIEnv extends StaticSiteClientEnv {
   AZURE_CLIENT_SECRET?: string;
 
   // swa db
-  SWA_CLI_DATA_API_FOLDER?: string;
+
 }
 
 declare interface Context {
@@ -138,11 +135,8 @@ declare type SWACLIStartOptions = {
   appLocation?: string;
   outputLocation?: string;
   apiLocation?: string;
-  dataApiLocation?: string;
   appDevserverUrl?: string;
   apiDevserverUrl?: string;
-  dataApiDevserverUrl?: string;
-  dataApiPort?: number;
   apiPort?: number;
   host?: string;
   port?: number;
@@ -162,7 +156,6 @@ declare type SWACLIStartOptions = {
 declare type SWACLIBuildOptions = {
   appLocation?: string;
   apiLocation?: string;
-  dataApiLocation?: string;
   outputLocation?: string;
   appBuildCommand?: string;
   apiBuildCommand?: string;
@@ -184,7 +177,6 @@ declare type SWACLIDBInitOptions = {
 declare type SWACLIDeployOptions = SWACLISharedLoginOptions & {
   apiLocation?: string;
   outputLocation?: string;
-  dataApiLocation?: string;
   deploymentToken?: string;
   swaConfigLocation?: string;
   dryRun?: boolean;

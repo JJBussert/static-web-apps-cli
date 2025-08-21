@@ -9,9 +9,8 @@ import { DEFAULT_CONFIG } from "../config.js";
 import { registerProcessExit } from "../core/utils/cli.js";
 import { logger, logRequest } from "../core/utils/logger.js";
 import { address, hostnameToIpAdress, isHttpUrl, isHttpsUrl, validateDevServerConfig } from "../core/utils/net.js";
-import { HAS_API, IS_API_DEV_SERVER, IS_APP_DEV_SERVER, SWA_CLI_API_URI, SWA_CLI_APP_PROTOCOL } from "../core/constants.js";
+import { IS_API_DEV_SERVER, IS_APP_DEV_SERVER, SWA_CLI_API_URI, SWA_CLI_APP_PROTOCOL } from "../core/constants.js";
 import { swaCLIEnv } from "../core/env.js";
-import { validateFunctionTriggers } from "./handlers/function.handler.js";
 import { handleUserConfig, onConnectionLost, requestMiddleware } from "./middlewares/request.middleware.js";
 
 const { SWA_CLI_PORT, SWA_CLI_APP_SSL } = swaCLIEnv();
@@ -164,9 +163,8 @@ function onServerStart(server: https.Server | http.Server, socketConnection: net
     await validateDevServerConfig(DEFAULT_CONFIG.outputLocation, DEFAULT_CONFIG.devserverTimeout);
   }
 
-  if (HAS_API) {
+  if (DEFAULT_CONFIG.apiLocation) {
     await validateDevServerConfig(SWA_CLI_API_URI() as string, DEFAULT_CONFIG.devserverTimeout);
-    await validateFunctionTriggers(SWA_CLI_API_URI() as string);
   }
 
   const server = createServer();

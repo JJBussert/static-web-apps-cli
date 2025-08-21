@@ -4,7 +4,6 @@ import { isHttpUrl } from "../../core/utils/net.js";
 import { logger } from "../../core/utils/logger.js";
 import { isSWAConfigFileUrl } from "../../core/utils/user-config.js";
 import { IS_APP_DEV_SERVER } from "../../core/constants.js";
-import { handleDataApiRequest } from "../handlers/dab.handler.js";
 import { handleErrorPage } from "../handlers/error-page.handler.js";
 import { handleFunctionRequest, isFunctionRequest } from "../handlers/function.handler.js";
 import { applyRedirectResponse, tryFindFileForRequest } from "../routes-engine/rules/routes.js";
@@ -51,13 +50,7 @@ export function getResponse(
     return true;
   }
 
-  if (isDataApiRequest) {
-    if (req.url?.startsWith("/data-api/")) {
-      req.url = req.url?.replace("/data-api", "");
-    }
-    handleDataApiRequest(req, res);
-    return true;
-  }
+  // Data API handling removed for EasyAuth emulator-only build
 
   const storageResult = getStorageContent(
     req,

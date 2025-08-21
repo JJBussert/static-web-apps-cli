@@ -33,7 +33,24 @@
     "resolveJsonModule": true,
     "types": ["vitest/globals"]
   },
-  "exclude": ["node_modules", "dist"],
-  "include": ["src/**/*.ts", "tests/**/*.ts", "src/**/*.json", "tests/_mocks/process.js"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    // Exclude non-auth commands and data-api components
+    "src/cli/commands/build/**",
+    "src/cli/commands/deploy/**",
+    "src/cli/commands/init/**",
+    "src/cli/commands/login/**",
+    "src/cli/commands/db/**",
+    "src/core/dataApiBuilder/**",
+    "src/core/deploy-client.ts",
+    "src/core/frameworks/**",
+    "src/msha/handlers/dab.handler.ts"
+  ],
+  "include": [
+    // Core emulator and auth components only
+    "src/**/*.ts",
+    "src/**/*.json"
+  ],
   "files": ["src/swa.d.ts"]
 }
