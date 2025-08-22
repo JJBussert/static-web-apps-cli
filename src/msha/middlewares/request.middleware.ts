@@ -13,7 +13,6 @@ import { findSWAConfigFile } from "../../core/utils/user-config.js";
 import { parseUrl } from "../../core/utils/net.js";
 import { AUTH_STATUS, CUSTOM_URL_SCHEME, IS_APP_DEV_SERVER, SWA_PUBLIC_DIR } from "../../core/constants.js";
 import { getAuthBlockResponse, handleAuthRequest, isAuthRequest, isLoginRequest, isLogoutRequest } from "../handlers/auth.handler.js";
-import { isDataApiRequest } from "../handlers/dab.handler.js";
 import { handleErrorPage } from "../handlers/error-page.handler.js";
 import { isFunctionRequest } from "../handlers/function.handler.js";
 import { isRequestMethodValid, isRouteRequiringUserRolesCheck, tryGetMatchingRoute } from "../routes-engine/rules/routes.js";
@@ -280,11 +279,7 @@ export async function requestMiddleware(
     logger.silly(` - not a function request`);
   }
 
-  logger.silly(`checking data-api request`);
-  const isDataApiReq = isDataApiRequest(req, matchingRouteRule?.rewrite);
-  if (!isDataApiReq) {
-    logger.silly(` - not a data Api request`);
-  }
+  const isDataApiReq = false;
 
   if (!isRequestMethodValid(req, isFunctionReq, isAuthReq, isDataApiReq)) {
     res.statusCode = 405;

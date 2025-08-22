@@ -44,10 +44,10 @@ export const DEFAULT_CONFIG: SWACLIConfig = {
   port: parseInt(SWA_CLI_PORT || "4280", 10),
   host: SWA_CLI_HOST || (isRunningInDocker() ? "0.0.0.0" : "localhost"),
   apiPort: parseInt(SWA_CLI_API_PORT || "7071", 10),
-  dataApiPort: parseInt(SWA_CLI_DATA_API_PORT || "5000", 10),
+  // dataApiPort removed in EasyAuth emulator-only build
   appLocation: SWA_CLI_APP_LOCATION || `.`,
   apiLocation: SWA_CLI_API_LOCATION ? SWA_CLI_API_LOCATION : undefined,
-  dataApiLocation: SWA_CLI_DATA_API_LOCATION ? SWA_CLI_DATA_API_LOCATION : undefined,
+  // dataApiLocation removed in EasyAuth emulator-only build
   outputLocation: SWA_CLI_OUTPUT_LOCATION || `.`,
   swaConfigLocation: SWA_RUNTIME_CONFIG_LOCATION || undefined,
   ssl: useEnvVarOrUseDefault(SWA_CLI_APP_SSL, false),
@@ -69,7 +69,7 @@ export const DEFAULT_CONFIG: SWACLIConfig = {
   dryRun: useEnvVarOrUseDefault(SWA_CLI_DEPLOY_DRY_RUN, false),
   apiLanguage: SWA_CLI_API_LANGUAGE || "node",
   apiVersion: SWA_CLI_API_VERSION || "16",
-  dataApiDevserverUrl: SWA_CLI_DATA_API_DEVSERVER_URL || undefined,
+  // dataApiDevserverUrl removed in EasyAuth emulator-only build
 
   // swa login options
   subscriptionId: AZURE_SUBSCRIPTION_ID || undefined,

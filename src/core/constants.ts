@@ -287,7 +287,7 @@ export const GIT_IGNORE_FILENAME = ".gitignore";
 
 export const SWA_CLI_APP_PROTOCOL = DEFAULT_CONFIG.ssl ? `https` : `http`;
 export const SWA_PUBLIC_DIR = path.resolve(__dirname, "..", "public"); //SWA_PUBLIC_DIR = "../public"
-export const HAS_API = Boolean(DEFAULT_CONFIG.apiLocation && SWA_CLI_API_URI());
+export const HAS_API = Boolean(DEFAULT_CONFIG.apiLocation && SWA_CLI_API_URI()); // retained for function proxy only
 
 export const SWA_CONFIG_FILENAME = "staticwebapp.config.json";
 export const SWA_CONFIG_FILENAME_LEGACY = "routes.json";

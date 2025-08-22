@@ -1,7 +1,7 @@
 import { Command, OptionValues, program } from "commander";
 import { DEFAULT_CONFIG } from "../../config.js";
 import { SWACommand, SWA_COMMANDS } from "../constants.js";
-import { getConfigFileOptions } from "./cli-config.js";
+// config file loading disabled for emulator-only build
 import { logger } from "./logger.js";
 
 let userDefinedOptions: SWACLIConfig = {};
@@ -19,24 +19,17 @@ export async function configureOptions(
   setLogLevel(verbose);
 
   userDefinedOptions = getUserOptions(command);
-  const configFileOptions = loadConfigFile ? await getConfigFileOptions(options.configName || configName, options.config!) : {};
-  const configFileCommandSpecificOptions = commandName ? configFileOptions[commandName] || {} : {};
 
-  // Clean up subcommands overrides before merging
-  // to avoid confusing the user when printing options
-  SWA_COMMANDS.forEach((command) => {
-    delete configFileOptions[command];
-  });
-  configFileDefinedOptions = { ...configFileOptions, ...configFileCommandSpecificOptions };
+  // Config file support removed: only CLI args are used
+  configFileDefinedOptions = {};
 
   options = {
+    ...DEFAULT_CONFIG,
     ...options,
-    ...configFileDefinedOptions,
     ...userDefinedOptions,
   };
 
-  // Re-set log level again after config file has been read,
-  // as it may have changed the log level
+  // Re-set log level again after merging user options
   setLogLevel(options.verbose);
 
   if (options.printConfig) {
